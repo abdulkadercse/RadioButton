@@ -1,0 +1,90 @@
+================ xml code here =============
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#009688"
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context=".MainActivity">
+
+
+
+   <RadioGroup
+       android:id="@+id/raidoGroup"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
+
+       <RadioButton
+           android:id="@+id/maleId"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="Male"
+           />
+
+       <RadioButton
+           android:id="@+id/femaleId"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="Female"
+           />
+   </RadioGroup>
+    <Button
+        android:id="@+id/showButtonId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Result"
+        />
+
+    <TextView
+        android:id="@+id/resultTextView"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:text=""
+        />
+
+</LinearLayout>
+
+========= JavaCode here================
+
+public class MainActivity extends AppCompatActivity{
+
+
+    RadioGroup raidoGroup;
+    Button showButtonId;
+    TextView resultTextView;
+    RadioButton genderButton;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        raidoGroup = findViewById(R.id.raidoGroup);
+        showButtonId = findViewById(R.id.showButtonId);
+        resultTextView = findViewById(R.id.resultTextView);
+
+
+        showButtonId.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+              int selectedId=  raidoGroup.getCheckedRadioButtonId();
+
+              genderButton = findViewById(selectedId);
+
+             String value = genderButton.getText().toString();
+
+             resultTextView.setText("You have Selected " + value);
+
+
+            }
+        });
+
+
+
+    }
+}
